@@ -1,10 +1,17 @@
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
-data/raw/
-data/chunks/
-data/processed/
-models/
-*.csv
+
+# Ignore actual data files (DVC manages these)
+data/raw/*.csv
+data/chunks/*.csv
+data/processed/*.csv
+
+# Airflow & MLflow local logs / databases
+airflow/
+mlruns/
+models/*.pkl
+$/
 
