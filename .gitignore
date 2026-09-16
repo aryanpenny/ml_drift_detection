@@ -9,7 +9,9 @@ data/raw/*.csv
 data/chunks/*.csv
 data/processed/*.csv
 
-# Airflow & MLflow local logs / databases
+# Do NOT ignore .dvc pointer files — Git needs those!
+
+# Airflow, MLflow logs & databases
 airflow/
 mlruns/
 models/*.pkl
