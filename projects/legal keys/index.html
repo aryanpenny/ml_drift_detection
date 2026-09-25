@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KVGMS Lex Terrae | Modern Legal Services</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#1e293b',
+                            primary: '#4f46e5', // Indigo
+                            secondary: '#0ea5e9', // Sky blue
+                            accent: '#f59e0b', // Amber
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Glassmorphism for cards */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* Hide sections by default (JS will toggle this) */
+        .page-section {
+            display: none;
+        }
+        
+        /* Show active section */
+        .page-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800">
+
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="navigateTo('home')">
+                    <i class="fa-solid fa-scale-balanced text-3xl text-brand-primary mr-2"></i>
+                    <span class="font-serif text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-secondary">
+                        KVGMS Lex Terrae
+                    </span>
+                </div>
+
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="navigateTo('home')" class="nav-link text-slate-600 hover:text-brand-primary font-medium transition">Home</button>
+                    <button onclick="navigateTo('about')" class="nav-link text-slate-600 hover:text-brand-primary font-medium transition">About</button>
+                    <button onclick="navigateTo('services')" class="nav-link text-slate-600 hover:text-brand-primary font-medium transition">Services</button>
+                    <button onclick="navigateTo('contact')" class="nav-link px-5 py-2 rounded-full bg-brand-primary text-white hover:bg-indigo-700 transition shadow-md">Contact Us</button>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()" class="text-slate-600 hover:text-brand-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="navigateTo('home')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50">Home</button>
+                <button onclick="navigateTo('about')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50">About</button>
+                <button onclick="navigateTo('services')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-brand-primary hover:bg-gray-50">Services</button>
+                <button onclick="navigateTo('contact')" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-brand-primary mt-2">Contact Us</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+
+        <div id="home" class="page-section active fade-in">
+            <div class="relative bg-brand-dark overflow-hidden">
+                <div class="absolute inset-0">
+                    <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" class="w-full h-full object-cover opacity-20" alt="Law Office Background">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/90 to-brand-primary/40"></div>
+                </div>
+                
+                <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+                    <h1 class="text-4xl md:text-6xl font-serif font-bold text-white tracking-tight mb-6">
+                        Justice Served with <br>
+                        <span class="text-brand-accent">Clarity & Compassion</span>
+                    </h1>
+                    <p class="mt-6 text-xl text-gray-300 max-w-2xl">
+                        Expert legal representation for modern challenges. We navigate the complexities of the law so you can focus on your future.
+                    </p>
+                    <div class="mt-10 flex gap-4">
+                        <button onclick="navigateTo('contact')" class="px-8 py-3 rounded-full bg-gradient-to-r from-brand-secondary to-brand-primary text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition transform">
+                            Get Consultation
+                        </button>
+                        <button onclick="navigateTo('services')" class="px-8 py-3 rounded-full border-2 border-white/30 text-white font-semibold hover:bg-white/10 transition">
+                            View Practice Areas
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 relative z-10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <div class="w-12 h-12 bg-blue-100 text-brand-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-gavel text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Expert Defense</h3>
+                        <p class="text-gray-600 text-sm">Over 50+ years of courtroom experience defending your rights.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-heart-pulse text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Client Focused</h3>
+                        <p class="text-gray-600 text-sm">We treat every case with the personal attention it deserves.</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl text-center">
+                        <div class="w-12 h-12 bg-amber-100 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fa-solid fa-clock text-xl"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">Timely Resolution</h3>
+                        <p class="text-gray-600 text-sm">Focused on resolving your legal matters with speed and precision.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="about" class="page-section fade-in">
+            <div class="bg-white py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Meet Our Advocates</h2>
+                        <div class="h-1 w-20 bg-brand-primary mx-auto rounded-full"></div>
+                        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                            A diverse team of legal experts dedicated to fighting for your rights.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300">
+                            <img src="assets/tata.png" 
+                                 class="w-full h-96 object-cover object-top" 
+                                 alt="KVGM Krishna Rao">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">KVGM Krishna Rao</h3>
+                                <p class="text-brand-primary font-semibold text-sm mb-2">Senior Partner</p>
+                                <p class="text-xs text-gray-500 mb-3">Ex.Public Prosecutor, Ex.Govt Pleader</p>
+                                <p class="text-gray-600 text-sm">
+                                   Senior Advocate with 50+ years of exceptional legal experience, delivering expert guidance and seasoned representation in high-stakes cases.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300">
+                            <img src="assets/Nanna.png" 
+                                 class="w-full h-96 object-cover object-top" 
+                                 alt="kalyan">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">U.Kalyana Chakravarthi</h3>
+                                <p class="text-brand-secondary font-semibold text-sm mb-2">Senior Advocate</p>
+                                <p class="text-xs text-gray-500 mb-3">MBA,LLB,MCJ</p>
+                                <p class="text-gray-600 text-sm">
+                                    Expert in divorce, custody, and mediation. Known for compassionate yet firm representation.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300">
+                            <img src="assets/harsha.jpeg" 
+                                 class="w-full h-96 object-cover object-top" 
+                                 alt="Priya Sharma">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">T.Sri Harsha</h3>
+                                <p class="text-brand-accent font-semibold text-sm mb-2">Junior Advocate</p>
+                                <p class="text-xs text-gray-500 mb-3">LLB </p>
+                                <p class="text-gray-600 text-sm">
+                                    Junior Advocate specializing in drafting, and client support. Dedicated to delivering accurate documentation and assisting senior counsel in case preparation.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:-translate-y-2 transition duration-300">
+                            <img src="assets/sashi.jpeg" 
+                                 class="w-full h-96 object-cover object-top" 
+                                 alt="David Chen">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold text-gray-900">Sashikanth</h3>
+                                <p class="text-brand-primary font-semibold text-sm mb-2">Junior Advocate</p>
+                                <p class="text-xs text-gray-500 mb-3">LLB</p>
+                                <p class="text-gray-600 text-sm">
+                                   Junior Advocate focused on legal research, drafting, and assisting in court matters with professionalism and attention to detail.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-16 bg-slate-50 p-8 rounded-2xl text-center">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Connect with our Team</h3>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="https://wa.me/+918886884646" target="_blank" class="flex items-center justify-center px-6 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition shadow-md">
+                                <i class="fa-brands fa-whatsapp text-2xl mr-2"></i>
+                                Chat on WhatsApp
+                            </a>
+                            <a href="https://www.instagram.com/legal.key?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg hover:opacity-90 transition shadow-md">
+                                <i class="fa-brands fa-instagram text-2xl mr-2"></i>
+                                Follow on Instagram
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="services" class="page-section fade-in">
+            <div class="bg-slate-50 py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Areas of Practice</h2>
+                        <div class="h-1 w-20 bg-brand-primary mx-auto rounded-full"></div>
+                        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive legal solutions tailored to your unique situation.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 border-t-4 border-red-500 group">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Criminal Law" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-8">
+                                <div class="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center -mt-16 mb-4 relative z-10 border-4 border-white">
+                                    <i class="fa-solid fa-handcuffs text-red-500 text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Criminal Law</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Facing charges can be daunting. We provide aggressive defense for DUI, theft, assault, and white-collar crimes to protect your freedom.
+                                </p>
+                                <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-red-400 mr-2"></i> DUI & Traffic Offenses</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-red-400 mr-2"></i> Drug Offenses</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-red-400 mr-2"></i> Bail Hearings</li>
+                                </ul>
+                                <button onclick="navigateTo('contact')" class="text-red-600 font-semibold hover:text-red-800 flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 border-t-4 border-brand-secondary group">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Family Law" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-8">
+                                <div class="w-14 h-14 bg-sky-50 rounded-full flex items-center justify-center -mt-16 mb-4 relative z-10 border-4 border-white">
+                                    <i class="fa-solid fa-people-roof text-brand-secondary text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Family Law</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Compassionate guidance through life's toughest transitions. We handle divorce, custody battles, and adoption with care.
+                                </p>
+                                <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-sky-400 mr-2"></i> Divorce & Separation</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-sky-400 mr-2"></i> Child Custody</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-sky-400 mr-2"></i> Alimony & Support</li>
+                                </ul>
+                                <button onclick="navigateTo('contact')" class="text-brand-secondary font-semibold hover:text-sky-700 flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition duration-300 border-t-4 border-brand-accent group">
+                            <div class="h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Civil Law" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <div class="p-8">
+                                <div class="w-14 h-14 bg-amber-50 rounded-full flex items-center justify-center -mt-16 mb-4 relative z-10 border-4 border-white">
+                                    <i class="fa-solid fa-file-contract text-brand-accent text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-900 mb-3">Civil Law</h3>
+                                <p class="text-gray-600 mb-4">
+                                    Protecting your assets and resolving disputes efficiently. From property issues to contract breaches, we secure your interests.
+                                </p>
+                                <ul class="text-sm text-gray-500 space-y-2 mb-6">
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-amber-400 mr-2"></i> Property Disputes</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-amber-400 mr-2"></i> Contract Review</li>
+                                    <li class="flex items-center"><i class="fa-solid fa-check text-amber-400 mr-2"></i> Civil Litigation</li>
+                                </ul>
+                                <button onclick="navigateTo('contact')" class="text-brand-accent font-semibold hover:text-amber-700 flex items-center">
+                                    Learn More <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="page-section fade-in">
+            <div class="bg-white py-16">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center mb-12">
+                        <h2 class="text-3xl md:text-4xl font-serif font-bold text-gray-900">Get In Touch</h2>
+                        <p class="mt-4 text-gray-600">Let us help you understand your legal options.</p>
+                    </div>
+
+                    <div class="max-w-3xl mx-auto bg-slate-50 rounded-3xl p-8 md:p-12 shadow-inner">
+                        <h3 class="text-2xl font-bold text-brand-primary mb-6 text-center">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
+                                <div class="flex-shrink-0 w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center text-brand-primary">
+                                    <i class="fa-solid fa-location-dot text-xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">Office Location</h4>
+                                    <p class="text-gray-600">Flat 102 HIG/111 R R Sri Laxmi Emerald<br>K.P.H.B 6th phase,Hyderabad, 500085</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
+                                <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center text-green-600">
+                                    <i class="fa-brands fa-whatsapp text-2xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">WhatsApp Us</h4>
+                                    <p class="text-gray-600 mb-1"> For urgent matters.</p>
+                                    <a href="https://wa.me/918886884646" target="_blank" class="text-green-600 font-medium hover:underline">Click to Chat</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start bg-white p-4 rounded-xl shadow-sm">
+                                <div class="flex-shrink-0 w-12 h-12 bg-pink-100 rounded-lg flex items-center justify-center text-pink-600">
+                                    <i class="fa-brands fa-instagram text-2xl"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold text-gray-900">Follow on Instagram</h4>
+                                    <p class="text-gray-600 mb-1">See our latest updates and legal tips.</p>
+                                    <a href="https://www.instagram.com/legal.key?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="text-pink-600 font-medium hover:underline">@legal.key</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-8 p-6 bg-brand-dark rounded-xl text-white">
+                            <h4 class="font-bold text-lg mb-2 text-center">Office Hours</h4>
+                            <ul class="space-y-1 text-sm text-gray-300 max-w-sm mx-auto">
+                                <li class="flex justify-between"><span>Mon - Sat:</span> <span>11:00 AM - 1:00 PM | 6:00 PM - 8:00PM</span></li>
+                                <li class="flex justify-between"><span>Sunday:</span> <span>11:00 AM - 1:00 PM</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-brand-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-scale-balanced text-2xl text-brand-primary mr-2"></i>
+                        <span class="font-serif text-xl font-bold">KVGMS Lex Terrae</span>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-sm">
+                        Providing top-tier legal representation with a modern, human-centric approach. Your justice is our priority.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-secondary">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" onclick="navigateTo('home')" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" onclick="navigateTo('about')" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" onclick="navigateTo('services')" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#" onclick="navigateTo('contact')" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-lg mb-4 text-brand-accent">Social</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://wa.me/918886884646" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-green-500 hover:text-white transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/legal.key?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-500">
+                &copy; 2021 KVGMS lex terrae. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+                section.classList.remove('fade-in'); // Reset animation
+            });
+
+            // Show selected section
+            const target = document.getElementById(pageId);
+            if(target) {
+                target.classList.add('active');
+                
+                // Trigger reflow to restart animation
+                void target.offsetWidth; 
+                target.classList.add('fade-in');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
