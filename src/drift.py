@@ -2,6 +2,7 @@ import os
 import pandas as pd
 from scipy.stats import ks_2samp
 import time
+import numpy as np
 
 def detect_ks_drift(reference_df, current_df, threshold= 0.05):
     drift_results = {}
@@ -18,14 +19,31 @@ def detect_ks_drift(reference_df, current_df, threshold= 0.05):
     
     return drift_results
 
-if __name__ == "__main__":
-    # Test loading chunk 1 (reference) and chunk 2 (current batch)
+def calculate_psi(reference, current, num_bins=10):
+    counts_ref, bin_edges = np.histogram(reference, bins=num_bins)
+    counts_cur, _ = np.histogram(current, bins=bin_edges)
+    
+    pct_ref = counts_ref / len(reference) + 1e-4
+    pct_cur = counts_cur / len(current) + 1e-4
+    
+    psi_value = np.sum((pct_cur - pct_ref) * np.log(pct_cur / pct_ref))
+    return round(float(psi_value), 4)
+
+def should_retrain(chunk_number):
     ref_df = pd.read_csv("data/chunks/chunk_1.csv")
-    cur_df = pd.read_csv("data/chunks/chunk_2.csv")
+    cur_path = f"data/chunks/chunk_{chunk_number}.csv"
+
+    if not os.path.exists(cur_path):
+        return False
     
-    start_time = time.time()
-    results = detect_ks_drift(ref_df, cur_df)
-    elapsed_time = (time.time() - start_time) * 1000
+    cur_df = pd.read_csv(cur_path)
+    ks_results = detect_ks_drift(ref_df, cur_df)
     
-    print(f"KS Drift Detection completed in {elapsed_time:.2f} ms")
-    print("Results:", results)
+    # Returns True if ANY feature has drifted
+    return any(res["drift_detected"] for res in ks_results.values())
+
+if __name__ == "__main__":
+    retrain_flag = should_retrain(2)
+    print(f"Should Retrain for Chunk 2?: {retrain_flag}")
+
+    

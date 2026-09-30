@@ -1,4 +1,3 @@
-from src.preprocess import PROCESSED_DIR
 import pandas as pd
 import os 
 import joblib
@@ -10,6 +9,7 @@ from sklearn.metrics import accuracy_score, classification_report
 PROCESSED_DIR="data/processed"
 MODELS_DIR = "models"
 MODEL_NAME = "churn_model.pkl"
+
 
 def load_data():
     print("loading data")
@@ -56,14 +56,14 @@ if __name__ == "__main__":
         mlflow.log_param("n_estimators", 100)
         mlflow.log_param("random_state", 42)
 
-    # Step B: Train the model
-    trained_model = train_model(X_train, y_train)
+        # Step B: Train the model
+        trained_model = train_model(X_train, y_train)
+        
+        # Step C: Evaluate how well it learned
+        accuracy= evaluate_model(trained_model, X_test, y_test)
+        
+        mlflow.log_metric("accuracy",accuracy)
+        mlflow.sklearn.log_model(trained_model,"random_forest_model")
     
-    # Step C: Evaluate how well it learned
-    accuracy= evaluate_model(trained_model, X_test, y_test)
-    
-    mlflow.log_metric("accuracy",accuracy)
-    mlflow.sklearn.log_model(trained_model,"random_forest_model")
-   
-    # Step D: Save the brain of the model so we don't have to retrain it every time
-    save_model(trained_model)    
+        # Step D: Save the brain of the model so we don't have to retrain it every time
+        save_model(trained_model)    
