@@ -1,0 +1,78 @@
+{
+  "pipeline_history": [
+    {
+      "id": "run_1794926453872",
+      "stage": "Automated Retraining",
+      "status": "Completed",
+      "duration_sec": 3.6,
+      "timestamp": "2026-11-17 20:10:53",
+      "trigger_reason": "Triggered on Chunk 1",
+      "details": {
+        "accuracy": 0.8181818181818182,
+        "precision": 0.7164179104477612,
+        "recall": 0.5161290322580645,
+        "f1": 0.6
+      }
+    },
+    {
+      "id": "run_1794926453872",
+      "stage": "Model Training",
+      "status": "Completed",
+      "duration_sec": 3.58,
+      "timestamp": "2026-11-17 20:10:53",
+      "trigger_reason": "Retrained on Chunk 1",
+      "details": {
+        "accuracy": 0.8181818181818182,
+        "precision": 0.7164179104477612,
+        "recall": 0.5161290322580645,
+        "f1": 0.6
+      }
+    },
+    {
+      "id": "run_1794925990832",
+      "stage": "Model Training",
+      "status": "Completed",
+      "duration_sec": 3.31,
+      "timestamp": "2026-11-17 20:03:10",
+      "trigger_reason": "Initial Training",
+      "details": {
+        "accuracy": 0.8181818181818182,
+        "precision": 0.7164179104477612,
+        "recall": 0.5161290322580645,
+        "f1": 0.6
+      }
+    }
+  ],
+  "drift_events": [],
+  "models": [
+    {
+      "version": "v1.1.0",
+      "training_time": "2026-11-17 20:10:53",
+      "accuracy": 0.8182,
+      "precision": 0.7164,
+      "recall": 0.5161,
+      "f1": 0.6,
+      "samples": 1760,
+      "trigger": "Retrained on Chunk 1",
+      "is_active": true
+    },
+    {
+      "version": "v1.0.0",
+      "training_time": "2026-11-17 20:03:10",
+      "accuracy": 0.8182,
+      "precision": 0.7164,
+      "recall": 0.5161,
+      "f1": 0.6,
+      "samples": 1760,
+      "trigger": "Initial Training",
+      "is_active": false
+    }
+  ],
+  "active_model_version": "v1.1.0",
+  "last_settings": {
+    "ks_threshold": 0.05,
+    "psi_threshold": 0.1,
+    "adwin_delta": 0.002,
+    "selected_chunk": 2
+  }
+}
